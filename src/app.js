@@ -2,7 +2,7 @@ import React from 'react';
 
 function App(){
 
-    const initialTodoList = [
+    const initialList = [
         {
             id: Math.random(),
             date:  new Date().toString(),
@@ -17,11 +17,11 @@ function App(){
         }
     ]
 
-    var [todoList, setTodoList] = React.useState(initialTodoList)
+    var [todoList, setTodoList] = React.useState(initialList)
 
-    const list = todoList.map((item) => {
+    const todoListDisplay = todoList.map(todo => {
         return (
-            <div key={item.id} style={
+            <div key={todo.id} style={
                     {
                         border: "2px solid black",
                         padding: "10px",
@@ -30,13 +30,15 @@ function App(){
                 }
             >
                 <input type="checkbox" placeholder="Toggle a todo item" />
-                <p>{item.todoText}</p>
 
+                <p>{todo.todoText}</p>
+
+                {/*consider better names for arrow variables*/}
                 <button
                     onClick={
                         () => setTodoList(
-                            prev => prev.filter(
-                                i => i.id !== item.id
+                            prevTodos => prevTodos.filter(
+                                currTodo => currTodo.id !== todo.id
                             )
                         )
                     }
@@ -51,7 +53,7 @@ function App(){
         <div>
            <input type="text" placeholder="Enter a todo item" />
            <button>Add</button>
-           {list}
+           {todoListDisplay}
         </div>
     )
 }

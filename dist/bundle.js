@@ -1384,7 +1384,7 @@
 	var clientExports = requireClient();
 
 	function App() {
-	  const initialTodoList = [{
+	  const initialList = [{
 	    id: Math.random(),
 	    date: new Date().toString(),
 	    completed: false,
@@ -1395,10 +1395,10 @@
 	    completed: false,
 	    todoText: "Learn test"
 	  }];
-	  var [todoList, setTodoList] = React.useState(initialTodoList);
-	  const list = todoList.map(item => {
+	  var [todoList, setTodoList] = React.useState(initialList);
+	  const todoListDisplay = todoList.map(todo => {
 	    return /*#__PURE__*/React.createElement("div", {
-	      key: item.id,
+	      key: todo.id,
 	      style: {
 	        border: "2px solid black",
 	        padding: "10px",
@@ -1407,14 +1407,14 @@
 	    }, /*#__PURE__*/React.createElement("input", {
 	      type: "checkbox",
 	      placeholder: "Toggle a todo item"
-	    }), /*#__PURE__*/React.createElement("p", null, item.todoText), /*#__PURE__*/React.createElement("button", {
-	      onClick: () => setTodoList(prev => prev.filter(i => i.id !== item.id))
+	    }), /*#__PURE__*/React.createElement("p", null, todo.todoText), /*#__PURE__*/React.createElement("button", {
+	      onClick: () => setTodoList(prevTodos => prevTodos.filter(currTodo => currTodo.id !== todo.id))
 	    }, "Delete"));
 	  });
 	  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("input", {
 	    type: "text",
 	    placeholder: "Enter a todo item"
-	  }), /*#__PURE__*/React.createElement("button", null, "Add"), list);
+	  }), /*#__PURE__*/React.createElement("button", null, "Add"), todoListDisplay);
 	}
 
 	const domNode = document.getElementById('root');
