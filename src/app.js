@@ -1,8 +1,23 @@
-import React from 'react';
+import React from 'react'
 
 function App(){
+    const completeStyle =
+    {
+        backgroundColor: "lightgreen",
+        border: "2px dashed black",
+        padding: "5px",
+        margin: "5px"
+    }
+    const incompleteStyle =
+    {
+        backgroundColor: "white",
+        border: "2px solid black",
+        padding: "10px",
+        margin: "10px"
+    }
 
-    const initialList = [
+    const initialList =
+    [
         {
             id: Math.random(),
             date:  new Date().toString(),
@@ -19,35 +34,61 @@ function App(){
 
     var [todoList, setTodoList] = React.useState(initialList)
 
-    const todoListDisplay = todoList.map(todo => {
-        return (
-            <div key={todo.id} style={
+    const markComplete = (id) =>
+    {
+        setTodoList(
+            prevTodos => prevTodos.map(
+                currTodo => {
+                    if(currTodo.id === id)
                     {
-                        border: "2px solid black",
-                        padding: "10px",
-                        margin: "10px"
+                        return {
+                            ...currTodo,
+                            completed: !currTodo.completed
+                        }
                     }
+                    return currTodo;
                 }
-            >
-                <input type="checkbox" placeholder="Toggle a todo item" />
+            )
+        )
+    }
 
-                <p>{todo.todoText}</p>
-
-                {/*consider better names for arrow variables*/}
-                <button
-                    onClick={
-                        () => setTodoList(
-                            prevTodos => prevTodos.filter(
-                                currTodo => currTodo.id !== todo.id
-                            )
-                        )
+    const todoListDisplay = todoList.map(
+        todo => {
+            return (
+                <div
+                    key={todo.id}
+                    style={
+                        todo.completed ?
+                            completeStyle : incompleteStyle
                     }
                 >
-                    Delete
-                </button>
-            </div>
-        )
-    })
+                    <input
+                        name="todoCheckbox"
+                        type="checkbox"
+                        placeholder="Toggle a todo item"
+                        onChange={
+                            () => markComplete(todo.id)
+                        }
+                    />
+
+                    <p>{todo.todoText}</p>
+
+                    {/*consider better names for arrow variables*/}
+                    <button
+                        onClick={
+                            () => setTodoList(
+                                prevTodos => prevTodos.filter(
+                                    currTodo => currTodo.id !== todo.id
+                                )
+                            )
+                        }
+                    >
+                        Delete
+                    </button>
+                </div>
+            )
+        }
+    )
 
     return (
         <div>
