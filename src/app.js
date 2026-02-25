@@ -3,6 +3,8 @@ import React from 'react'
 function App(){
     const completeStyle =
     {
+        display: "flex",
+        justifyContent: "space-evenly",
         backgroundColor: "lightgreen",
         border: "2px dashed black",
         padding: "5px",
@@ -10,29 +12,15 @@ function App(){
     }
     const incompleteStyle =
     {
+        display: "flex",
+        justifyContent: "space-evenly",
         backgroundColor: "white",
         border: "2px solid black",
         padding: "10px",
         margin: "10px"
     }
 
-    const initialList =
-    [
-        {
-            id: Math.random(),
-            date:  new Date().toString(),
-            completed: false,
-            todoText: "Learn React"
-        },
-        {
-            id: Math.random(),
-            date:  new Date().toString(),
-            completed: false,
-            todoText: "Learn test"
-        }
-    ]
-
-    var [todoList, setTodoList] = React.useState(initialList)
+    var [todoList, setTodoList] = React.useState([])
     var [todoName, setTodoName] = React.useState("")
 
     const markComplete = (id) =>
@@ -47,7 +35,7 @@ function App(){
                             completed: !currTodo.completed
                         }
                     }
-                    return currTodo;
+                    return currTodo
                 }
             )
         )
@@ -65,8 +53,8 @@ function App(){
                     todoText: todoName
                 }
             ]
-        );
-        setTodoName("");
+        )
+        setTodoName("")
     }
 
     const todoListDisplay = todoList.map(
@@ -87,9 +75,7 @@ function App(){
                             () => markComplete(todo.id)
                         }
                     />
-
                     <p>{todo.todoText}</p>
-
                     {/*consider better names for arrow variables*/}
                     <button
                         onClick={
@@ -100,7 +86,7 @@ function App(){
                             )
                         }
                     >
-                        Delete
+                        X
                     </button>
                 </div>
             )
@@ -109,11 +95,18 @@ function App(){
 
     return (
         <div>
-           <input type="text" placeholder="Enter a todo item" value={todoName} onChange={e => setTodoName(e.target.value)} />
-           <button onClick={() => addTodo({todoName})}>Add</button>
+            <input
+                type="text"
+                placeholder="Enter a todo item"
+                value={todoName}
+                onChange={e => setTodoName(e.target.value)}
+            />
+            <button onClick={() => addTodo({todoName})}>
+                Add
+            </button>
            {todoListDisplay}
         </div>
     )
 }
 
-export default App;
+export default App
