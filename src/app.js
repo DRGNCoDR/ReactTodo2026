@@ -33,6 +33,7 @@ function App(){
     ]
 
     var [todoList, setTodoList] = React.useState(initialList)
+    var [todoName, setTodoName] = React.useState("")
 
     const markComplete = (id) =>
     {
@@ -50,6 +51,22 @@ function App(){
                 }
             )
         )
+    }
+
+    const addTodo = ({todoName}) =>
+    {
+        setTodoList(
+            prevTodos => [
+                ...prevTodos,
+                {
+                    id: Math.random(),
+                    date: new Date().toString(),
+                    completed: false,
+                    todoText: todoName
+                }
+            ]
+        );
+        setTodoName("");
     }
 
     const todoListDisplay = todoList.map(
@@ -92,8 +109,8 @@ function App(){
 
     return (
         <div>
-           <input type="text" placeholder="Enter a todo item" />
-           <button>Add</button>
+           <input type="text" placeholder="Enter a todo item" value={todoName} onChange={e => setTodoName(e.target.value)} />
+           <button onClick={() => addTodo({todoName})}>Add</button>
            {todoListDisplay}
         </div>
     )
