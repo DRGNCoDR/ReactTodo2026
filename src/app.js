@@ -43,6 +43,9 @@ function App(){
 
     const addTodo = ({todoName}) =>
     {
+        if(todoName === ""){
+            return
+        }
         setTodoList(
             prevTodos => [
                 ...prevTodos,
