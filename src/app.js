@@ -10,6 +10,7 @@ function App(){
         padding: "5px",
         margin: "5px"
     }
+
     const incompleteStyle =
     {
         display: "flex",
@@ -60,6 +61,23 @@ function App(){
         setTodoName("")
     }
 
+    const addTodoDisplay = ({todoName}) =>
+    {
+        return (
+            <div>
+                <input
+                    type="text"
+                    placeholder="Enter a todo item"
+                    value={todoName}
+                    onChange={e => setTodoName(e.target.value)}
+                />
+                <button onClick={() => addTodo({todoName})}>
+                    Add
+                </button>
+            </div>
+        )
+    }
+
     const todoListDisplay = todoList.map(
         todo => {
             return (
@@ -98,15 +116,7 @@ function App(){
 
     return (
         <div>
-            <input
-                type="text"
-                placeholder="Enter a todo item"
-                value={todoName}
-                onChange={e => setTodoName(e.target.value)}
-            />
-            <button onClick={() => addTodo({todoName})}>
-                Add
-            </button>
+           {addTodoDisplay({todoName})}
            {todoListDisplay}
         </div>
     )
