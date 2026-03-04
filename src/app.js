@@ -1,8 +1,7 @@
 import React from 'react'
 
 function App(){
-    const completeStyle =
-    {
+    const completeStyle = {
         display : "flex",
         justifyContent : "space-evenly",
         backgroundColor : "lightgreen",
@@ -11,8 +10,7 @@ function App(){
         margin : "5px"
     }
 
-    const incompleteStyle =
-    {
+    const incompleteStyle ={
         display : "flex",
         justifyContent : "space-evenly",
         backgroundColor : "white",
@@ -44,7 +42,7 @@ function App(){
     {/*maybe combine this with addTodoDisplay?*/}
     const addTodo = ({todoName}) =>
     {
-        if(todoName === ""){
+        if(todoName === "") {
             return
         }
         setTodoList(
@@ -66,12 +64,12 @@ function App(){
         return (
             <div>
                 <input
-                    type = "text"
-                    placeholder = "Enter a todo item"
-                    value = {todoName}
-                    onChange = {e => setTodoName(e.target.value)}
+                    type="text"
+                    placeholder="Enter a todo item"
+                    value={todoName}
+                    onChange={e => setTodoName(e.target.value)}
                 />
-                <button onClick = {() => addTodo({todoName})}>
+                <button onClick={() => addTodo({todoName})}>
                     Add
                 </button>
             </div>
@@ -89,10 +87,10 @@ function App(){
                     }
                 >
                     <input
-                        name = "todoCheckbox"
-                        type = "checkbox"
-                        placeholder = "Toggle a todo item"
-                        onChange = {
+                        name="todoCheckbox"
+                        type="checkbox"
+                        placeholder="Toggle a todo item"
+                        onChange={
                             () => markComplete(todo.id)
                         }
                     />
