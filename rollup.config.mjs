@@ -6,30 +6,30 @@ import commonjs from '@rollup/plugin-commonjs'
 import replace from '@rollup/plugin-replace'
 
 export default {
-    input: "src/index.js",
-    output: {
-        file: "dist/bundle.js",
-        format: "iife",
-        sourcemap: true,
+    input : "src/index.js",
+    output : {
+        file : "dist/bundle.js",
+        format : "iife",
+        sourcemap : true,
     },
-    plugins: [
+    plugins : [
         nodeResolve({
-            extensions: [".js"],
+            extensions : [".js"],
         }),
         replace({
-            'process.env.NODE_ENV': JSON.stringify( 'development' )
+            'process.env.NODE_ENV' : JSON.stringify( 'development' )
         }),
         babel({
-            presets: ["@babel/preset-react"],
+            presets : ["@babel/preset-react"],
         }),
         commonjs(),
         serve({
-            open: true,
-            verbose: true,
-            contentBase: ["", "public"],
-            host: "localhost",
-            port: 1337,
+            open : true,
+            verbose : true,
+            contentBase : ["", "public"],
+            host : "localhost",
+            port : 1337,
         }),
-        livereload({ watch: "dist" }),
+        livereload({ watch : "dist" }),
     ]
 }

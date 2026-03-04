@@ -33,7 +33,7 @@ function App(){
                     {
                         return {
                             ...currTodo,
-                            completed: !currTodo.completed
+                            completed : !currTodo.completed
                         }
                     }
                     return currTodo
@@ -66,12 +66,12 @@ function App(){
         return (
             <div>
                 <input
-                    type="text"
-                    placeholder="Enter a todo item"
-                    value={todoName}
-                    onChange={e => setTodoName(e.target.value)}
+                    type = "text"
+                    placeholder = "Enter a todo item"
+                    value = {todoName}
+                    onChange = {e => setTodoName(e.target.value)}
                 />
-                <button onClick={() => addTodo({todoName})}>
+                <button onClick = {() => addTodo({todoName})}>
                     Add
                 </button>
             </div>
