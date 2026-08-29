@@ -113,10 +113,11 @@ function App(){
     )
 
     return (
-        <div>
+        <>
+           <h1>React Todo</h1>
            {addTodoDisplay({todoName})}
            {todoListDisplay}
-        </div>
+        </>
     )
 }
 
